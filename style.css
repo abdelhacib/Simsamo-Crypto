@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
+/* Reset */
 * {
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
@@ -7,6 +8,7 @@
   padding: 0;
 }
 
+/* Body */
 body {
   background: #f5f7fa;
   color: #333;
@@ -15,12 +17,14 @@ body {
   padding: 20px;
 }
 
+/* App container */
 .app {
   width: 95%;
   max-width: 1400px;
   padding: 20px 25px;
 }
 
+/* Header */
 header {
   display: flex;
   flex-wrap: wrap;
@@ -35,6 +39,7 @@ header h1 {
   color: #1a1a1a;
 }
 
+/* Controls */
 .controls {
   display: flex;
   align-items: center;
@@ -49,23 +54,22 @@ header h1 {
   outline: none;
   width: 200px;
   font-size: 14px;
+  transition: all 0.2s ease;
 }
 
-.controls select {
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  background: #fff;
-  cursor: pointer;
+.controls input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74,144,226,0.5);
 }
 
+/* Cards container */
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
 }
 
-/* Card Styles */
+/* Card styles */
 .card {
   background: #ffffff;
   border-radius: 15px;
@@ -82,12 +86,14 @@ header h1 {
   box-shadow: 0 12px 25px rgba(0,0,0,0.12);
 }
 
+/* Card header */
 .card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+/* Coin info */
 .coin-info {
   display: flex;
   align-items: center;
@@ -103,6 +109,13 @@ header h1 {
   font-weight: 600;
 }
 
+.rank {
+  font-weight: 600;
+  color: #888;
+  margin-right: 10px;
+}
+
+/* Price */
 .price {
   font-weight: 600;
   font-size: 1.1em;
@@ -118,6 +131,7 @@ header h1 {
   font-weight: 600;
 }
 
+/* Market data */
 .market-data {
   display: flex;
   justify-content: space-between;
@@ -125,11 +139,14 @@ header h1 {
   color: #555;
 }
 
+/* Chart */
 .chart-cell canvas {
   width: 100% !important;
   height: 50px !important;
+  transition: all 0.3s ease;
 }
 
+/* Favorite star */
 .star {
   cursor: pointer;
   font-size: 20px;
@@ -141,6 +158,7 @@ header h1 {
   color: #f5b700;
 }
 
+/* Status message */
 #statusMsg {
   margin-top: 15px;
   font-size: 14px;
@@ -149,6 +167,16 @@ header h1 {
 }
 
 /* Responsive */
+@media screen and (max-width: 900px) {
+  .controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .controls input {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .cards-container {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
