@@ -18,11 +18,7 @@ body {
 .app {
   width: 95%;
   max-width: 1400px;
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
   padding: 20px 25px;
-  transition: all 0.3s ease;
 }
 
 header {
@@ -30,14 +26,13 @@ header {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 header h1 {
   font-size: 2em;
   font-weight: 600;
   color: #1a1a1a;
-  transition: all 0.3s ease;
 }
 
 .controls {
@@ -54,12 +49,6 @@ header h1 {
   outline: none;
   width: 200px;
   font-size: 14px;
-  transition: all 0.2s ease;
-}
-
-.controls input:focus {
-  border-color: #4a90e2;
-  box-shadow: 0 0 5px rgba(74,144,226,0.5);
 }
 
 .controls select {
@@ -68,79 +57,84 @@ header h1 {
   border: 1px solid #ccc;
   background: #fff;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-.controls select:focus {
-  border-color: #4a90e2;
-  box-shadow: 0 0 5px rgba(74,144,226,0.5);
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
 }
 
-.table-container {
-  overflow-x: auto;
+/* Card Styles */
+.card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-  font-size: 14px;
-  transition: all 0.3s ease;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
 }
 
-thead {
-  background: #e9eff5;
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-thead th {
-  padding: 12px 10px;
-  font-weight: 600;
-  text-align: center;
-  color: #555;
-}
-
-tbody tr {
-  transition: all 0.3s ease;
-}
-
-tbody tr:hover {
-  background: #f0f5fb;
-}
-
-tbody td {
-  padding: 12px 10px;
-  text-align: center;
-  transition: all 0.3s ease;
+.coin-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .coin-img {
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
-  vertical-align: middle;
+  width: 35px;
+  height: 35px;
 }
 
-.price-up {
+.coin-name {
+  font-weight: 600;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.change-up {
   color: #16c784;
   font-weight: 600;
 }
 
-.price-down {
+.change-down {
   color: #ea3943;
   font-weight: 600;
 }
 
+.market-data {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #555;
+}
+
 .chart-cell canvas {
-  width: 100px !important;
-  height: 40px !important;
-  transition: all 0.3s ease;
+  width: 100% !important;
+  height: 50px !important;
 }
 
 .star {
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
   color: #ccc;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .star.favorited {
@@ -155,43 +149,8 @@ tbody td {
 }
 
 /* Responsive */
-@media screen and (max-width: 900px) {
-  .controls {
-    flex-direction: column;
-    gap: 10px;
-  }
-  .controls input, .controls select {
-    width: 100%;
-  }
-  table {
-    font-size: 12px;
-  }
-  .chart-cell canvas {
-    width: 80px !important;
-    height: 30px !important;
-  }
-}
-
 @media screen and (max-width: 600px) {
-  table, thead, tbody, th, td, tr {
-    display: block;
-  }
-  thead tr {
-    display: none;
-  }
-  tbody td {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 10px;
-    border-bottom: 1px solid #eee;
-  }
-  tbody td::before {
-    content: attr(data-label);
-    font-weight: 600;
-    color: #666;
-  }
-  .chart-cell canvas {
-    width: 100% !important;
-    height: 50px !important;
+  .cards-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }
