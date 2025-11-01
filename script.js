@@ -1,14 +1,13 @@
 const cardsContainer = document.getElementById("cardsContainer");
 const statusMsg = document.getElementById("statusMsg");
 const searchInput = document.getElementById("searchInput");
-const currencySelect = document.getElementById("currencySelect");
 
 let coinsData = [];
 let favoriteCoins = JSON.parse(localStorage.getItem("favoriteCoins")) || [];
 
 async function fetchCoins() {
   statusMsg.textContent = "⚙️ Fetching data...";
-  const currency = currencySelect.value;
+  const currency = 'usd'; // فقط دولار
   try {
     const res = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=50&page=1&sparkline=false`);
     const data = await res.json();
@@ -21,9 +20,9 @@ async function fetchCoins() {
   }
 }
 
-async function fetchCoinChart(coinId, currency) {
+async function fetchCoinChart(coinId) {
   try {
-    const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=${currency}&days=7&interval=daily`);
+    const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=7&interval=daily`);
     const data = await res.json();
     return data.prices.map(item => item[1]);
   } catch (err) {
@@ -44,18 +43,19 @@ function toggleFavorite(coinId) {
 
 async function renderCards(data) {
   cardsContainer.innerHTML = "";
-  const currency = currencySelect.value;
 
-  for (let coin of data) {
+  for (let i = 0; i < data.length; i++) {
+    const coin = data[i];
     const card = document.createElement("div");
     card.classList.add("card");
 
+    // Header
     const cardHeader = document.createElement("div");
     cardHeader.classList.add("card-header");
 
     const coinInfo = document.createElement("div");
     coinInfo.classList.add("coin-info");
-    coinInfo.innerHTML = `<img src="${coin.image}" class="coin-img"><span class="coin-name">${coin.name} (${coin.symbol.toUpperCase()})</span>`;
+    coinInfo.innerHTML = `<span class="rank">#${i + 1}</span><img src="${coin.image}" class="coin-img"><span class="coin-name">${coin.name} (${coin.symbol.toUpperCase()})</span>`;
 
     const star = document.createElement("div");
     star.classList.add("star");
@@ -68,27 +68,30 @@ async function renderCards(data) {
     cardHeader.appendChild(coinInfo);
     cardHeader.appendChild(star);
 
+    // Price
     const price = document.createElement("div");
     price.classList.add("price");
-    price.innerHTML = `${currency.toUpperCase()} ${coin.current_price.toLocaleString()} <span class="${coin.price_change_percentage_24h>=0?'change-up':'change-down'}">${coin.price_change_percentage_24h.toFixed(2)}%</span>`;
+    price.innerHTML = `USD ${coin.current_price.toLocaleString()} <span class="${coin.price_change_percentage_24h>=0?'change-up':'change-down'}">${coin.price_change_percentage_24h.toFixed(2)}%</span>`;
 
+    // Market data
     const marketData = document.createElement("div");
     marketData.classList.add("market-data");
-    marketData.innerHTML = `<span>Market Cap: ${currency.toUpperCase()} ${coin.market_cap.toLocaleString()}</span> <span>Volume: ${currency.toUpperCase()} ${coin.total_volume.toLocaleString()}</span>`;
+    marketData.innerHTML = `<span>Market Cap: USD ${coin.market_cap.toLocaleString()}</span> <span>Volume: USD ${coin.total_volume.toLocaleString()}</span>`;
 
+    // Chart
     const chartDiv = document.createElement("div");
     chartDiv.classList.add("chart-cell");
     const canvas = document.createElement("canvas");
     chartDiv.appendChild(canvas);
 
+    // Append all to card
     card.appendChild(cardHeader);
     card.appendChild(price);
     card.appendChild(marketData);
     card.appendChild(chartDiv);
-
     cardsContainer.appendChild(card);
 
-    const chartData = await fetchCoinChart(coin.id, currency);
+    const chartData = await fetchCoinChart(coin.id);
     new Chart(canvas.getContext("2d"), {
       type: 'line',
       data: {
@@ -118,8 +121,6 @@ searchInput.addEventListener("input", () => {
   const filtered = coinsData.filter(coin => coin.name.toLowerCase().includes(query) || coin.symbol.toLowerCase().includes(query));
   renderCards(filtered);
 });
-
-currencySelect.addEventListener("change", fetchCoins);
 
 // Auto-refresh every 60s
 setInterval(fetchCoins, 60000);
