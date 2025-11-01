@@ -3,23 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simsamo Crypto Tracker Ultimate</title>
+  <title>Crypto Tracker Pro</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="app">
-    <h1><i class="fa-solid fa-coins"></i> Simsamo Crypto Tracker Ultimate</h1>
-
-    <div class="controls">
-      <div class="search-bar">
+    <header>
+      <h1>Crypto Tracker Pro</h1>
+      <div class="controls">
         <input type="text" id="searchInput" placeholder="Search for a coin...">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </div>
-
-      <div class="currency-selector">
-        <label for="currencySelect">Currency:</label>
         <select id="currencySelect">
           <option value="usd" selected>USD</option>
           <option value="eur">EUR</option>
@@ -27,7 +21,7 @@
           <option value="jpy">JPY</option>
         </select>
       </div>
-    </div>
+    </header>
 
     <div class="table-container">
       <table id="cryptoTable">
@@ -49,8 +43,6 @@
 
     <div id="statusMsg"></div>
   </div>
-
-  <footer>⚡ Made with ❤️ by <b>Simsamo</b></footer>
 
   <script src="script.js"></script>
 </body>
