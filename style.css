@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at 30% 30%, #0a0f1f, #101c2e, #162742);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.app {
+  width: 95%;
+  max-width: 1300px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  padding: 25px 20px;
+  box-shadow: 0 0 70px rgba(0, 255, 200, 0.3);
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 0 0 20px #00ffc6;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  border-radius: 15px;
+  padding: 5px 15px;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  padding: 10px 5px;
+  outline: none;
+}
+
+.search-bar i {
+  color: #00ffc6;
+  font-size: 18px;
+}
+
+.currency-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.currency-selector select {
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  cursor: pointer;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+thead {
+  background: rgba(0, 255, 198, 0.15);
+  text-transform: uppercase;
+}
+
+thead th {
+  padding: 12px 10px;
+  font-weight: 600;
+  color: #00ffc6;
+  text-shadow: 0 0 5px #00ffc6;
+}
+
+tbody tr {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+tbody tr:hover {
+  background: rgba(0, 255, 198, 0.1);
+}
+
+tbody td {
+  padding: 12px 10px;
+  font-size: 14px;
+}
+
+.coin-img {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.price-up {
+  color: #00ff84;
+  font-weight: 600;
+}
+
+.price-down {
+  color: #ff4c4c;
+  font-weight: 600;
+}
+
+.chart-cell canvas {
+  width: 100px !important;
+  height: 40px !important;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 18px;
+  color: #aaa;
+  transition: 0.3s;
+}
+
+.star.favorited {
+  color: gold;
+}
+
+#statusMsg {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #00ffc6;
+  text-align: center;
+}
+
+footer {
+  margin-top: 20px;
+  font-size: 14px;
+  text-align: center;
+  color: #aaa;
+}
